@@ -29,6 +29,9 @@ X_train_bal, y_train_bal = apply_smote(X_train, y_train)
 
 from advanced_models.gridsearch_tuning import tune_decision_tree
 best_model = tune_decision_tree(X_train_bal, y_train_bal)
+evaluate_model(best_model, X_test, y_test)
 
 from advanced_models.xgboost_model import train_xgboost
 xgb_model = train_xgboost(X_train_bal, y_train_bal)
+
+evaluate_model(xgb_model, X_test, y_test)

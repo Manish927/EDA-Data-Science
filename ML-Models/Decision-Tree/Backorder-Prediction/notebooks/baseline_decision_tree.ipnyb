@@ -26,3 +26,6 @@ evaluate_model(model, X_test, y_test)
 from advanced_models.imbalance_handling import apply_smote
 X_train_bal, y_train_bal = apply_smote(X_train, y_train)
 
+
+from advanced_models.gridsearch_tuning import tune_decision_tree
+best_model = tune_decision_tree(X_train_bal, y_train_bal)

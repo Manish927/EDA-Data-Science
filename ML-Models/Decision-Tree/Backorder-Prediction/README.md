@@ -12,12 +12,12 @@ Visualization:
 - SHAP summary plot
 - Feature impact analysis
 
-Skill	Level
-Data preprocessing	✅
-ML modeling	✅
-Class imbalance handling	✅
-Hyperparameter tuning	✅
-Advanced ML models	✅
-Explainable AI	⭐⭐⭐⭐
-Production-style code structure	⭐⭐⭐⭐
 
+| Skill            | Level |
+| ---------------- | ----- |
+| Data Science     | ⭐⭐⭐⭐  |
+| Machine Learning | ⭐⭐⭐⭐  |
+| Explainable AI   | ⭐⭐⭐⭐  |
+| ML Pipeline      | ⭐⭐⭐⭐  |
+| Model Deployment | ⭐⭐⭐⭐  |
+| API Development  | ⭐⭐⭐⭐  |

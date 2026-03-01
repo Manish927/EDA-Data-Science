@@ -4,3 +4,20 @@ from src.preprocessing import split_data
 
 from src.train_model import train_decision_tree
 from src.evaluate import evaluate_model
+
+# Load Dataset
+df = load_data("../data/backorder.csv")
+
+# Preprocess
+df = preprocess_data(df)
+
+# Split Data
+X_train, X_test, y_train, y_test = split_data(df)
+
+
+# Train Model
+model = train_decision_tree(X_train, y_train)
+
+#Evaluate
+
+evaluate_model(model, X_test, y_test)

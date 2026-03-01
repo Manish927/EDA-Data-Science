@@ -25,6 +25,9 @@ xgb_model = train_xgboost(X_train_bal, y_train_bal)
 # Evaluate
 evaluate_model(xgb_model, X_test, y_test)
 
+from src.save_model import save_model
+save_model(xgb_model, "../models/backorder_model.pkl")
+
 # SHAP Explainability
 shap_values, explainer = shap_analysis(
     xgb_model,

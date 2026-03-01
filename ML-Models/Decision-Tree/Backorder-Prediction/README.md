@@ -12,13 +12,12 @@ Visualization:
 - SHAP summary plot
 - Feature impact analysis
 
-
-Skills
+Skill	Level
 Data preprocessing	✅
-ML pipeline design	✅
+ML modeling	✅
 Class imbalance handling	✅
 Hyperparameter tuning	✅
-Advanced models	✅
-Modular ML code	✅
-
+Advanced ML models	✅
+Explainable AI	⭐⭐⭐⭐
+Production-style code structure	⭐⭐⭐⭐
 

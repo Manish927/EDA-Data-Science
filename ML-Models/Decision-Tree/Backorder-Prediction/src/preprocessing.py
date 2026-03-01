@@ -11,7 +11,7 @@ def load_data(path):
 def preprocess_data(df):
 
     # Handle missing values
-    df['lead_time'].fillna(df['lead_time'].median(), inplace=True)
+    df['lead_time'] = df['lead_time'].fillna(df['lead_time'].median())
 
     # Identify categorical columns
     categorical_cols = df.select_dtypes(include=['object']).columns

@@ -1,4 +1,4 @@
-
+! pip install imbalanced-learn
 from imblearn.over_sampling import SMOTE
 
 def apply_smote(X_train, y_train):

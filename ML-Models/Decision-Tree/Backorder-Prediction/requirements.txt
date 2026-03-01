@@ -7,3 +7,5 @@ imbalanced-learn
 xgboost
 jupyter
 shap
+fastapi
+uvicorn

@@ -281,8 +281,11 @@ Example output:
 ![SHAP Summary](results/shap_summary.png)
 ![Feature Importance](results/shap_feature_importance.png)
 
-### Example Prediction Explanation
+### Individual Prediction Explanation
 ![SHAP Waterfall](results/shap_waterfall.png)
+
+### Feature Contribution Path
+![SHAP Decision Plot](results/shap_decision_plot.png)
 
 Key insights:
 

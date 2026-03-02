@@ -17,7 +17,7 @@ from save_model import save_model
 from logger import logger
 from advanced_models.shap_explainability import run_shap_analysis
 from advanced_models.shap_explainability import shap_waterfall_plot
-from advanced_models.shap_explainability import shap_force_plot
+from advanced_models.shap_explainability import shap_decision_plot
 
 def main():
 
@@ -60,7 +60,7 @@ def main():
         logger.info("Running SHAP explainability")
         run_shap_analysis(model, X_train, X_test)
         shap_waterfall_plot(model, X_test)
-        shap_force_plot(model, X_test)
+        shap_decision_plot(model, X_test)
     logger.info("Saving model")
     save_model(model, f"models/{model_name}")
     logger.info("Training pipeline completed successfully")

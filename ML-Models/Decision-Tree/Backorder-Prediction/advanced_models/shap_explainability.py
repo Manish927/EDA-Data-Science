@@ -67,3 +67,29 @@ def shap_force_plot(model, X_test):
     )
 
     return force_plot
+
+
+def shap_decision_plot(model, X_test):
+
+    print("Generating SHAP decision plot...")
+
+    explainer = shap.TreeExplainer(model)
+
+    shap_values = explainer.shap_values(X_test)
+
+    os.makedirs("results", exist_ok=True)
+
+    plt.figure()
+
+    shap.decision_plot(
+        explainer.expected_value,
+        shap_values[:50],
+        X_test.iloc[:50],
+        show=False
+    )
+
+    plt.savefig("results/shap_decision_plot.png", bbox_inches="tight")
+
+    plt.close()
+
+    print("Decision plot saved.")

@@ -1,0 +1,5 @@
+{
+    "model":"XGBoost",
+    "accuracy":0.91,
+    "training_date":"2026-03-02"
+   }

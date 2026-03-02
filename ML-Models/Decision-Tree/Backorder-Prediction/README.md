@@ -226,23 +226,27 @@ Results:
 
 
 ```
-(venv) ~\ML-Models\Decision-Tree\Backorder-Prediction> python.exe .\src\train.py
-2026-03-02 12:50:03,000 - logger - INFO - Data loaded successfully
-2026-03-02 12:50:03,068 - logger - INFO - Data preprocessed successfully
-2026-03-02 12:50:03,093 - logger - INFO - Data split successfully
-2026-03-02 12:50:03,436 - logger - INFO - Model trained successfully
-Accuracy: 0.8984413054067218
+~\ML-Models\Decision-Tree\Backorder-Prediction> python.exe .\src\train.py --model xgboost
+2026-03-02 14:19:31,975 - logger - INFO - Loading dataset
+2026-03-02 14:19:33,333 - logger - INFO - Preprocessing data
+2026-03-02 14:19:33,406 - logger - INFO - Splitting data
+2026-03-02 14:19:33,435 - logger - INFO - Training XGBoost model
+2026-03-02 14:19:34,940 - logger - INFO - Evaluating model
+Accuracy: 0.9212534502354278
 
 Classification Report
 
               precision    recall  f1-score   support
 
-       False       0.92      0.96      0.94     10074
-        True       0.78      0.61      0.69      2244
+       False       0.95      0.96      0.95     10074
+        True       0.80      0.75      0.78      2244
 
-    accuracy                           0.90     12318
-   macro avg       0.85      0.79      0.81     12318
-weighted avg       0.89      0.90      0.89     12318
+    accuracy                           0.92     12318
+   macro avg       0.87      0.86      0.86     12318
+weighted avg       0.92      0.92      0.92     12318
+
+2026-03-02 14:20:40,465 - logger - INFO - Saving model
+2026-03-02 14:20:40,476 - logger - INFO - Training pipeline completed successfully
 ```
 
 ## Interpretation of the Classification Report
@@ -250,16 +254,28 @@ weighted avg       0.89      0.90      0.89     12318
 ```
 | Class                | Precision | Recall | Meaning                                   |
 | -------------------- | --------- | ------ | ----------------------------------------- |
-| False (No Backorder) | 0.92      | 0.96   | Model predicts normal inventory very well |
-| True (Backorder)     | 0.78      | 0.61   | Model misses some backorders              |
+| False (No Backorder) | 0.95      | 0.96   | Model predicts normal inventory very well |
+| True (Backorder)     | 0.80      | 0.75   | Model misses some backorders              |
 ```
 
 
-The important metric here is Recall for True class. As Model catches 61% of real backorders. In supply chain, recall is more important than accuracy because missing backorders is costly. This is why I have applied SMOTE + XGBoost
+The important metric here is Recall for True class. As Model catches 75% of real backorders. In supply chain, recall is more important than accuracy because missing backorders is costly. This is why I have applied SMOTE + XGBoost
 ```
-Recall = 0.61
+Recall = 0.75
 ```
 
+## Benchmark table
+```
+Model Performance
+
+Decision Tree
+Accuracy: 0.898
+Recall (Backorder): 0.61
+
+XGBoost
+Accuracy: 0.921
+Recall (Backorder): 0.75
+```
 
 
 

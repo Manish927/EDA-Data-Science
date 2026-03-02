@@ -1,6 +1,3 @@
-! pip install xgboost
-
-
 from xgboost import XGBClassifier
 
 def train_xgboost(X_train, y_train):

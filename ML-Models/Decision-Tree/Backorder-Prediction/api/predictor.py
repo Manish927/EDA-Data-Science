@@ -3,7 +3,7 @@ from pathlib import Path
 from src.save_model import load_model
 
 
-MODEL_PATH = Path(__file__).resolve().parents[1] / "models" / "backorder_model_v1.pkl"
+MODEL_PATH = Path(__file__).resolve().parents[1] / "models" / "xgboost_model.pkl"
 model = load_model(str(MODEL_PATH))
 
 

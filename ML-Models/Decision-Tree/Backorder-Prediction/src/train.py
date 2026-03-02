@@ -1,27 +1,58 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+import argparse
 import pandas as pd
 
-from preprocessing import preprocess_data, split_data
-from train_models import train_decision_tree
+from preprocessing import preprocess_data
+from preprocessing import split_data
+
+from train_decision_tree import train_decision_tree
+from advanced_models.xgboost_model import train_xgboost
+
 from evaluate import evaluate_model
 from save_model import save_model
 from logger import logger
 
-def train_model():
-    #df = pd.read_csv("../data/backorder.csv")
+
+def main():
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="decision_tree",
+        choices=["decision_tree", "xgboost"],
+        help="Model to train"
+    )
+
     URL = 'https://raw.githubusercontent.com/Manish927/EDA-Data-Science/refs/heads/main/ML-Models/Decision-Tree/Backorder-Prediction/data/backorder.csv'
+    args = parser.parse_args()
+    logger.info("Loading dataset")
     df = pd.read_csv(URL)
-    logger.info("Data loaded successfully")
+    logger.info("Preprocessing data")
     df = preprocess_data(df)
-    logger.info("Data preprocessed successfully")
+    logger.info("Splitting data")
     X_train, X_test, y_train, y_test = split_data(df)
-    logger.info("Data split successfully")
-    model = train_decision_tree(X_train, y_train)
-    logger.info("Model trained successfully")
+
+    if args.model == "decision_tree":
+        logger.info("Training Decision Tree model")
+        model = train_decision_tree(X_train, y_train)
+        model_name = "decision_tree_model.pkl"
+    elif args.model == "xgboost":
+        logger.info("Training XGBoost model")
+        model = train_xgboost(X_train, y_train)
+        model_name = "xgboost_model.pkl"
+
+    logger.info("Evaluating model")
     evaluate_model(model, X_test, y_test)
-    logger.info("Model evaluated successfully")
-    save_model(model, "models/backorder_model_v1.pkl")
-    logger.info("Model saved successfully")
-    logger.info("Training completed successfully")
+    logger.info("Saving model")
+    save_model(model, f"models/{model_name}")
+    logger.info("Training pipeline completed successfully")
+
 
 if __name__ == "__main__":
-    train_model()
+    main()

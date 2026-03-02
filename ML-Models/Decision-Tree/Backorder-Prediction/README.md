@@ -268,9 +268,9 @@ Recall (Backorder): 0.75
 
 
 
-## Model Explainability
+## Model Explainability (SHAP)
 
-The project uses SHAP (SHapley Additive Explanations) to interpret model predictions.
+The model interpretation is performed using SHAP (SHapley Additive Explanations), which shows how each feature contributes to predictions.
 
 Example output:
 
@@ -281,14 +281,13 @@ Example output:
 ![Feature Importance](results/shap_feature_importance.png)
 
 
-Benefits:
-- Identify features influencing backorders
-- Improve supply chain decision making
-- Increase trust in ML predictions
+Key insights:
 
-Visualization:
-- SHAP summary plot
-- Feature impact analysis
+- Low inventory strongly increases backorder probability
+- High recent sales and demand forecasts increase supply risk
+- Longer supplier lead time increases shortage probability
+
+
 
 
 | Skill            | Level |

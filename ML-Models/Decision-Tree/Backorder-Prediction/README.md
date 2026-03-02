@@ -281,7 +281,16 @@ Recall (Backorder): 0.75
 
 ## Model Explainability
 
-SHAP (SHapley Additive exPlanations) is used to interpret model predictions.
+The project uses SHAP (SHapley Additive Explanations) to interpret model predictions.
+
+Example output:
+
+- SHAP Summary Plot
+- Feature Importance Plot
+
+![SHAP Summary](results/shap_summary.png)
+![Feature Importance](results/shap_feature_importance.png)
+
 
 Benefits:
 - Identify features influencing backorders

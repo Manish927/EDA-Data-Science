@@ -1,34 +1,30 @@
 import shap
 import matplotlib.pyplot as plt
+import os
 
+def run_shap_analysis(model, X_train, X_test):
 
-def shap_analysis(model, X_train, X_test):
+    print("Running SHAP explainability...")
 
-    # Create SHAP explainer
+    # Create explainer
     explainer = shap.TreeExplainer(model)
 
-    # Calculate SHAP values
+    # Compute SHAP values
     shap_values = explainer.shap_values(X_test)
 
-    return shap_values, explainer
+    # Ensure results directory exists
+    os.makedirs("results", exist_ok=True)
 
+    # Summary plot
+    plt.figure()
+    shap.summary_plot(shap_values, X_test, show=False)
+    plt.savefig("results/shap_summary.png", bbox_inches="tight")
+    plt.close()
 
-def shap_summary_plot(shap_values, X_test):
+    # Feature importance plot
+    plt.figure()
+    shap.summary_plot(shap_values, X_test, plot_type="bar", show=False)
+    plt.savefig("results/shap_feature_importance.png", bbox_inches="tight")
+    plt.close()
 
-    shap.summary_plot(shap_values, X_test)
-
-    plt.savefig("../results/shap_summary.png")
-
-    plt.show()
-
-
-def shap_force_plot(explainer, shap_values, X_test):
-
-    shap.initjs()
-
-    shap.force_plot(
-        explainer.expected_value,
-        shap_values[0],
-        X_test.iloc[0]
-    )
-
+    print("SHAP plots saved in results/")

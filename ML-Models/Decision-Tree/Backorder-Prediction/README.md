@@ -212,21 +212,10 @@ Docker containerization for deployment
 CI/CD pipeline for ML model updates
 
 
-
-Results:
-
-## Model Evaluation
-
-![Confusion Matrix](results/confusion_matrix.png)
-
-## Feature Importance
-
-![SHAP Summary](results/shap_summary.png)
-
-
+# Execution
 
 ```
-~\ML-Models\Decision-Tree\Backorder-Prediction> python.exe .\src\train.py --model xgboost
+~\ML-Models\Decision-Tree\Backorder-Prediction> python.exe .\src\train.py --model xgboost --shap
 2026-03-02 14:19:31,975 - logger - INFO - Loading dataset
 2026-03-02 14:19:33,333 - logger - INFO - Preprocessing data
 2026-03-02 14:19:33,406 - logger - INFO - Splitting data

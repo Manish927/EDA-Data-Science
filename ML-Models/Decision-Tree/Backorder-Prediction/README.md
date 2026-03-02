@@ -1,3 +1,229 @@
+# Backorder Prediction using Machine Learning
+
+## Project Overview
+
+In supply chain management, a **backorder** occurs when customer demand exceeds available inventory.  
+Predicting backorders in advance helps organizations improve **inventory planning, reduce delays, and prevent stock shortages**.
+
+This project builds an **end-to-end machine learning pipeline** to predict whether a product will go on backorder using historical supply chain data.
+
+The system includes **data preprocessing, machine learning models, explainability techniques, and an API for real-time predictions.**
+
+---
+
+## Problem Statement
+
+Supply chain systems generate large amounts of operational data such as:
+
+- Inventory levels
+- Sales history
+- Demand forecasts
+- Supplier performance
+- Lead time
+
+Using this data, we aim to **predict whether a product will go on backorder** before the shortage occurs.
+
+Early predictions allow companies to take proactive actions such as:
+
+- Increasing inventory
+- Adjusting procurement schedules
+- Improving demand planning
+
+---
+
+
+## Project Workflow
+```
+Supply Chain Dataset
+│
+▼
+Data Cleaning & Preprocessing
+(Pandas, Feature Engineering)
+│
+▼
+Handling Class Imbalance
+(SMOTE)
+│
+▼
+Model Training
+Decision Tree → XGBoost
+│
+▼
+Hyperparameter Tuning
+(GridSearchCV)
+│
+▼
+Model Explainability
+(SHAP)
+│
+▼
+Deployment
+(FastAPI REST API)
+```
+
+
+---
+
+## Technologies Used
+
+- **Python**
+- **Pandas**
+- **NumPy**
+- **Scikit-Learn**
+- **XGBoost**
+- **SHAP (Explainable AI)**
+- **FastAPI**
+- **Jupyter Notebook**
+- **Matplotlib / Seaborn**
+
+---
+
+## Machine Learning Models
+
+### 1. Decision Tree (Baseline Model)
+A simple interpretable model used to establish a baseline prediction performance.
+
+### 2. Hyperparameter Tuned Decision Tree
+Improved performance using **GridSearchCV**.
+
+### 3. XGBoost Model
+An advanced gradient boosting model used to achieve better prediction accuracy.
+
+---
+
+## Handling Class Imbalance
+
+The dataset contains **imbalanced classes**, where backorders occur less frequently.
+
+To address this issue, **SMOTE (Synthetic Minority Oversampling Technique)** was used to balance the dataset and improve model performance.
+
+---
+
+## Model Explainability
+
+To understand how the model makes predictions, **SHAP (SHapley Additive Explanations)** was used.
+
+SHAP helps identify:
+
+- Which features influence predictions the most
+- How each feature contributes to predicting a backorder
+
+This improves **model transparency and trustworthiness**.
+
+---
+
+## Key Features Influencing Backorders
+
+The model found that the following features strongly influence backorder predictions:
+
+- Low inventory (`national_inv`)
+- High demand forecast (`forecast_3_month`)
+- Long supplier lead time (`lead_time`)
+- High past sales volume
+- High minimum bank stock requirement
+
+These insights can help supply chain teams **anticipate shortages earlier.**
+
+---
+
+## API Deployment
+
+The trained model is deployed using **FastAPI**, allowing real-time predictions through a REST API.
+
+Example API request:
+
+```json
+{
+"national_inv": 10,
+"lead_time": 5,
+"in_transit_qty": 2,
+"forecast_3_month": 50,
+"forecast_6_month": 80,
+"forecast_9_month": 120,
+"sales_1_month": 10,
+"sales_3_month": 30,
+"sales_6_month": 50,
+"sales_9_month": 70,
+"min_bank": 20,
+"pieces_past_due": 0,
+"perf_6_month_avg": 0.9,
+"perf_12_month_avg": 0.85,
+"local_bo_qty": 0
+}
+
+```
+
+## Repository Structure
+```
+Backorder-Prediction
+│
+├── data
+│   └── backorder dataset
+│
+├── notebooks
+│   ├── baseline_decision_tree.ipynb
+│   └── advanced_models.ipynb
+│
+├── src
+│   ├── preprocessing.py
+│   ├── train_model.py
+│   ├── evaluate.py
+│   └── save_model.py
+│
+├── advanced_models
+│   ├── imbalance_handling.py
+│   ├── gridsearch_tuning.py
+│   ├── xgboost_model.py
+│   └── shap_explainability.py
+│
+├── api
+│   ├── main.py
+│   ├── predictor.py
+│   └── schema.py
+│
+├── models
+│   └── trained_model.pkl
+│
+└── results
+    ├── confusion_matrix.png
+    └── shap_summary.png
+```
+
+## How to Run the Project
+
+# Install Dependencies
+pip install -r requirements.txt
+uvicorn api.main:app --reload
+
+Run FastAPI server
+uvicorn api.main:app --reload
+
+Open API documentation:
+http://127.0.0.1:8000/docs
+
+
+## Future Improvements
+
+Feature engineering for demand forecasting
+Model comparison with Random Forest and LightGBM
+Docker containerization for deployment
+CI/CD pipeline for ML model updates
+
+
+
+Results:
+
+## Model Evaluation
+
+![Confusion Matrix](results/confusion_matrix.png)
+
+## Feature Importance
+
+![SHAP Summary](results/shap_summary.png)
+
+
+
+
 
 ## Model Explainability
 
@@ -25,18 +251,6 @@ Visualization:
 
 
 
-## Deployment
-
-This project exposes the trained model using FastAPI.
-
-Run API:
-
-uvicorn api.main:app --reload
-
-API Docs:
-
-http://127.0.0.1:8000/docs
-
 
 model (Decision Tree / XGBoost) typically predicts high probability of backorder when
 
@@ -52,9 +266,9 @@ model (Decision Tree / XGBoost) typically predicts high probability of backorder
 | local_bo_qty               | **> 0**                   |
 
 
+# For 95% Probability
+```
 
-
-For 95% Probability
 {
 "national_inv": 0,
 "lead_time": 30,
@@ -73,8 +287,10 @@ For 95% Probability
 "local_bo_qty": 10
 }
 
+Response
 {
   "prediction": true,
   "probability": 0.9588819875776398
 }
 HTTP status: 200
+```

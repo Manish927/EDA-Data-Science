@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 
 def load_data(path):
     df = pd.read_csv(path)
+    df = df.drop(columns=['sku'])
     return df
 
 
@@ -27,7 +28,7 @@ def preprocess_data(df):
 
 
 def split_data(df):
-
+    
     X = df.drop("went_on_backorder_Yes", axis=1)
     y = df["went_on_backorder_Yes"]
 

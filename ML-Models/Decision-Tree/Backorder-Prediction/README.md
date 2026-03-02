@@ -277,9 +277,12 @@ Example output:
 - SHAP Summary Plot
 - Feature Importance Plot
 
+### Global Feature Importance
 ![SHAP Summary](results/shap_summary.png)
 ![Feature Importance](results/shap_feature_importance.png)
 
+### Example Prediction Explanation
+![SHAP Waterfall](results/shap_waterfall.png)
 
 Key insights:
 

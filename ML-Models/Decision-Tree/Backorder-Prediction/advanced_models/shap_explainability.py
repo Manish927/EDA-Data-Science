@@ -28,3 +28,42 @@ def run_shap_analysis(model, X_train, X_test):
     plt.close()
 
     print("SHAP plots saved in results/")
+
+
+
+def shap_waterfall_plot(model, X_test):
+
+    print("Generating SHAP waterfall plot...")
+
+    explainer = shap.TreeExplainer(model)
+
+    shap_values = explainer(X_test)
+
+    os.makedirs("results", exist_ok=True)
+
+    plt.figure()
+
+    shap.plots.waterfall(shap_values[0], show=False)
+
+    plt.savefig("results/shap_waterfall.png", bbox_inches="tight")
+
+    plt.close()
+
+    print("Waterfall plot saved.")
+
+
+def shap_force_plot(model, X_test):
+
+    explainer = shap.TreeExplainer(model)
+
+    shap_values = explainer.shap_values(X_test)
+
+    shap.initjs()
+
+    force_plot = shap.force_plot(
+        explainer.expected_value,
+        shap_values[0],
+        X_test.iloc[0]
+    )
+
+    return force_plot

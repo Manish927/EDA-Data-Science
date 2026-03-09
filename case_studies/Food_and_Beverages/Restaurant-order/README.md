@@ -8,10 +8,10 @@ This will help enhance customer experience and improve business performance.
 
 
 It includes:
-    * python
-    * Numpy
-    * Pandas
-    * Seaborn
-    * Univariate Analysis
-    * Bivariate Analysis
-    * Exploratory Data Analysis
+ * python
+ * Numpy
+ * Pandas
+ * Seaborn
+ * Univariate Analysis
+ * Bivariate Analysis
+ * Exploratory Data Analysis

@@ -33,4 +33,7 @@ This project classifies news headlines into 10 distinct categories (Politics, Bu
 ## 📈 Visualizing Confidence
 The project includes a detailed Confusion Matrix analysis, identifying "semantic hotspots" where news categories overlap, providing insights into model decision-making.
 
+![F1 Score](F1-Score.png)
+
+![Confusion Matrix](confusion_matrix.png)
 
